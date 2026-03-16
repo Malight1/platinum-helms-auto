@@ -139,7 +139,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </p>
               <p className="text-white/80 mb-10 leading-relaxed text-[15px] italic">
                 Join thousands of satisfied drivers who've discovered their
-                dream vehicle at Platinum Helms â€” where every drive is an
+                dream vehicle at Platinum Helms • where every drive is an
                 occasion, and every vehicle tells a story.
               </p>
 
@@ -228,7 +228,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               Why Choose Platinum Helms
             </h2>
             <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-              We're not just selling cars â€” we're crafting experiences,
+              We're not just selling cars • we're crafting experiences,
               building relationships, and making automotive dreams come true,
               one exceptional vehicle at a time.
             </p>
@@ -415,9 +415,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   {/* Vehicle Specs */}
                   <div className="flex flex-wrap gap-3 mb-4 text-xs text-gray-600">
                     <span>{vehicle.transmission}</span>
-                    <span>â€¢</span>
+                    <span>•</span>
                     <span>{vehicle.fuelType}</span>
-                    <span>â€¢</span>
+                    <span>•</span>
                     <span>{vehicle.mileage.toLocaleString()} mi</span>
                   </div>
 
@@ -550,7 +550,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </Badge>
             <h2 className="mb-4 font-bold text-[20px]">What Our Clients Say</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Don't just take our word for it â€” hear from the thousands of
+              Don't just take our word for it • hear from the thousands of
               satisfied drivers who've found their perfect match.
             </p>
           </div>
@@ -569,7 +569,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <Quote className="text-red-600 mb-4" size={32} />
               <p className="text-gray-700 mb-6 italic">
                 "The entire experience was seamless. From browsing to financing
-                to driving away in my dream car â€” Platinum Helms made it
+                to driving away in my dream car • Platinum Helms made it
                 effortless. Absolutely exceptional service!"
               </p>
               <div className="flex items-center gap-3">
@@ -927,11 +927,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </p>
             <div className="flex flex-wrap gap-8 justify-center items-center opacity-60">
               <div className="text-white/80">BBB A+ Rated</div>
-              <div className="text-white/40">â€¢</div>
+              <div className="text-white/40">•</div>
               <div className="text-white/80">5-Star Reviews</div>
-              <div className="text-white/40">â€¢</div>
+              <div className="text-white/40">•</div>
               <div className="text-white/80">Certified Dealers</div>
-              <div className="text-white/40">â€¢</div>
+              <div className="text-white/40">•</div>
               <div className="text-white/80">Nationwide Delivery</div>
             </div>
           </div>

@@ -298,7 +298,7 @@ export function CarFinancingPage({ onNavigate }: CarFinancingPageProps) {
                   <h3 className="mb-2 font-bold">{option.title}</h3>
                   <div className="flex items-center gap-4 mb-4">
                     <span className="text-sm text-gray-900">{option.rate}</span>
-                    <span className="text-sm text-gray-500">â€¢</span>
+                    <span className="text-sm text-gray-500">•</span>
                     <span className="text-sm text-gray-500">{option.term}</span>
                   </div>
                   <p className="text-gray-600 mb-6">{option.description}</p>
@@ -351,7 +351,7 @@ export function CarFinancingPage({ onNavigate }: CarFinancingPageProps) {
               Get Pre-Qualified Now
             </Button>
             <p className="text-sm text-gray-500 mt-4">
-              Won't affect your credit score â€¢ Takes less than 2 minutes
+              Won't affect your credit score • Takes less than 2 minutes
             </p>
           </div>
         </div>

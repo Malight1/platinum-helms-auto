@@ -124,7 +124,7 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
                   Our journey has been defined by an unwavering commitment to
                   excellence, transparency, and personalized service. We've built our
                   reputation on understanding that purchasing a luxury vehicle is more
-                  than a transactionâ€”it's an experience that should be as exceptional
+                  than a transaction•it's an experience that should be as exceptional
                   as the vehicle itself.
                 </p>
                 <p>
@@ -238,7 +238,7 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
           <div className="text-center mb-16">
             <h2 className="mb-4">What Our Clients Say</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Don't just take our word for itâ€”hear from satisfied clients.
+              Don't just take our word for it•hear from satisfied clients.
             </p>
           </div>
 
