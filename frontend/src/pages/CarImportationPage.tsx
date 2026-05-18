@@ -1138,7 +1138,7 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
               </label>
               <Slider
                 min={0}
-                max={500000}
+                max={7000000000}
                 step={5000}
                 value={auctionBidRange}
                 onValueChange={setAuctionBidRange}
@@ -1302,7 +1302,10 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
                         variant="outline"
                         className="flex-1 text-black border-gray-300 hover:bg-gray-100 font-medium"
                         onClick={() => {
-                          setSelectedVehicle(vehicle);
+                          setSelectedVehicle({
+                            ...vehicle,
+                            price: vehicle.currentBid,
+                          });
                           setIsDialogOpen(true);
                         }}
                       >

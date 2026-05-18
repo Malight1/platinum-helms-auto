@@ -647,7 +647,7 @@ export function CarPurchasePage({ onNavigate }: CarPurchasePageProps) {
               </label>
               <Slider
                 min={0}
-                max={250000}
+                max={5000000000}
                 step={5000}
                 value={priceRange}
                 onValueChange={setPriceRange}

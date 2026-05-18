@@ -148,14 +148,14 @@ export function CarFinancingPage({ onNavigate }: CarFinancingPageProps) {
                   <Slider
                     value={[vehiclePrice]}
                     onValueChange={(value) => setVehiclePrice(value[0])}
-                    min={30000}
-                    max={200000}
+                    min={50000000}
+                    max={7000000000}
                     step={5000}
                     className="mb-2"
                   />
                   <div className="flex justify-between text-xs text-gray-500">
-                    <span>{formatCurrency(30000)}</span>
-                    <span>{formatCurrency(200000)}</span>
+                    <span>{formatCurrency(50000000)}</span>
+                    <span>{formatCurrency(7000000000)}</span>
                   </div>
                 </div>
 
