@@ -5,6 +5,7 @@ import { Users, Award, Globe, Heart, Target, Zap } from "lucide-react";
 import phblack from "../assets/phblack.png";
 import phred from "../assets/phred.png";
 import phwhite from "../assets/phwhite.png";
+import mrugo from "../assets/mrugo.jpg";
 
 interface AboutUsPageProps {
   onNavigate: (page: string) => void;
@@ -140,9 +141,9 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
               </div>
             </div>
 
-            <div className="relative h-[500px] rounded-lg overflow-hidden shadow-xl">
+            <div className="relative h-[800px] rounded-lg overflow-hidden shadow-xl">
               <ImageWithFallback
-                src={phwhite}
+                src={mrugo}
                 alt="Our facility"
                 className="w-full h-full object-cover"
               />
