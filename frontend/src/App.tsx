@@ -169,8 +169,8 @@ export default function App() {
         <ScrollToTop />
         <div className="min-h-screen bg-white">
           <Routes>
-            {/* Coming Soon as Landing Page */}
-            <Route path="/" element={<ComingSoonPageWrapper />} />
+            {/* Home as Landing Page */}
+            <Route path="/" element={<Navigate to="/home" replace />} />
             
             {/* Public Routes */}
             <Route
