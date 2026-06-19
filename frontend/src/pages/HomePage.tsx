@@ -141,8 +141,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="relative flex min-h-screen items-center overflow-hidden bg-obsidian">
         <div className="absolute inset-0">
           <ImageWithFallback src={phblack} alt="Luxury vehicle on display" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/75 to-obsidian/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-transparent" />
         </div>
 
         <div className="relative mx-auto w-full max-w-7xl px-4 pt-28 sm:px-6 lg:px-8">
@@ -153,7 +153,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              <h1 className="font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
                 Find Your <span className="text-brand">Dream Car</span> Today
               </h1>
             </Reveal>
@@ -199,13 +199,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* ── Trust strip ──────────────────────────────────── */}
-      <section className="bg-obsidian-soft py-12 text-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 text-center sm:px-6 md:grid-cols-4 lg:px-8">
+      <section className="border-y border-white/[0.07] bg-obsidian-soft py-10 text-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/[0.07] px-4 sm:px-6 md:grid-cols-4 lg:px-8">
           {trustItems.map(({ Icon, title, sub }) => (
-            <div key={title} className="flex flex-col items-center">
-              <Icon className="mb-3 text-brand" size={30} />
-              <div className="font-display text-xl">{title}</div>
-              <div className="mt-1 text-sm text-white/55">{sub}</div>
+            <div key={title} className="flex flex-col items-center gap-2 px-4 py-2 text-center first:pl-0 last:pr-0">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-brand/10">
+                <Icon className="text-brand" size={22} />
+              </div>
+              <div className="font-display text-sm font-semibold tracking-wide">{title}</div>
+              <div className="text-xs text-white/45">{sub}</div>
             </div>
           ))}
         </div>
@@ -340,9 +342,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                         <h3 className="mt-1 font-display text-2xl font-semibold text-foreground">{vehicle.name}</h3>
                         <p className="mt-1 text-2xl font-semibold text-brand">{formatCurrency(vehicle.price)}</p>
                         <div className="mt-3 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                          <span>{vehicle.transmission}</span><span>•</span>
-                          <span>{vehicle.fuelType}</span><span>•</span>
-                          <span>{vehicle.mileage.toLocaleString()} mi</span>
+                          <span>{vehicle.transmission}</span><span>·</span>
+                          <span>{vehicle.fuelType}</span><span>·</span>
+                          <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : "Brand New"}</span>
                         </div>
                         <div className="mt-4 space-y-1">
                           {vehicle.features.slice(0, 3).map((feature) => (

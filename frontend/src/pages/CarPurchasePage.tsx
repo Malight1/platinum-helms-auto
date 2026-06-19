@@ -144,18 +144,22 @@ export function CarPurchasePage({ onNavigate }: CarPurchasePageProps) {
   return (
     <div className="bg-background">
       {/* Hero */}
-      <section className="relative flex h-[420px] items-center overflow-hidden bg-obsidian">
+      <section className="relative overflow-hidden bg-obsidian">
         <div className="absolute inset-0">
           <ImageWithFallback src={phred} alt="Luxury car showroom" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-obsidian/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent" />
         </div>
-        <div className="relative mx-auto w-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 sm:pb-14 sm:pt-36 lg:px-8 lg:pt-40">
           <Reveal className="max-w-2xl">
-            <h1 className="font-display text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl">
-              Premium Vehicle Collection
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand">
+              Explore Inventory
+            </span>
+            <h1 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+              Find Your Perfect<br className="hidden sm:block" /> Luxury Vehicle
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-white/75">
-              Discover luxury vehicles with advanced filtering and comprehensive details.
+            <p className="mt-5 max-w-xl text-base text-white/75 sm:text-lg">
+              Filter by brand, price, condition and more across our full luxury inventory.
             </p>
           </Reveal>
         </div>

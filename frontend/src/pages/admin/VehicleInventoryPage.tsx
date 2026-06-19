@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 import api from "@/lib/api";
 import {
   CarRecord,
@@ -164,14 +165,24 @@ export default function VehicleInventoryPage() {
     }
   };
 
-  const deleteImage = async (carId: number, imageId: number) => {
-    if (!window.confirm("Delete this image? This cannot be undone.")) return;
+  const deleteImage = (carId: number, imageId: number) => {
+    toast("Delete this image?", {
+      description: "This cannot be undone.",
+      action: { label: "Delete", onClick: () => doDeleteImage(carId, imageId) },
+      cancel: { label: "Cancel", onClick: () => {} },
+      duration: 8000,
+    });
+  };
+
+  const doDeleteImage = async (carId: number, imageId: number) => {
     setActionId(`image-${imageId}`);
     try {
       await api.cars.deleteImage(carId, imageId);
       await loadCars();
+      toast.success("Image deleted.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unable to delete image");
+      toast.error("Failed to delete image.");
     } finally {
       setActionId(null);
     }
@@ -196,14 +207,24 @@ export default function VehicleInventoryPage() {
     updateCar(car, { tags: nextTags } as Partial<CarRecord>);
   };
 
-  const deleteCar = async (carId: number) => {
-    if (!window.confirm("Delete this vehicle and all attached images?")) return;
+  const deleteCar = (carId: number) => {
+    toast("Delete this vehicle?", {
+      description: "This will remove the vehicle and all attached images permanently.",
+      action: { label: "Delete", onClick: () => doDeleteCar(carId) },
+      cancel: { label: "Cancel", onClick: () => {} },
+      duration: 8000,
+    });
+  };
+
+  const doDeleteCar = async (carId: number) => {
     setActionId(`delete-${carId}`);
     try {
       await api.cars.delete(carId);
       await loadCars();
+      toast.success("Vehicle deleted.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unable to delete vehicle");
+      toast.error("Failed to delete vehicle.");
     } finally {
       setActionId(null);
     }

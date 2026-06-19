@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import api from "@/lib/api";
 import { downloadCsv, formatDate, labelStatus } from "@/lib/adminUtils";
 import { Button } from "@/components/button";
@@ -77,14 +78,24 @@ export default function ContactLeadsPage() {
     }
   };
 
-  const deleteContact = async (id: number) => {
-    if (!window.confirm("Delete this contact lead?")) return;
+  const deleteContact = (id: number) => {
+    toast("Delete this contact lead?", {
+      description: "This action cannot be undone.",
+      action: { label: "Delete", onClick: () => doDeleteContact(id) },
+      cancel: { label: "Cancel", onClick: () => {} },
+      duration: 8000,
+    });
+  };
+
+  const doDeleteContact = async (id: number) => {
     setActionId(`${id}-delete`);
     try {
       await api.leads.delete("contact", id);
       await loadContacts();
+      toast.success("Contact deleted.");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unable to delete contact");
+      toast.error("Failed to delete contact.");
     } finally {
       setActionId(null);
     }

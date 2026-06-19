@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import api from "@/lib/api";
 import { formatCurrency, normalizeCar } from "@/lib/adminUtils";
 import { ImageWithFallback } from "../components/ImageWithFallback";
@@ -852,29 +853,39 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
   return (
     <div className="bg-background">
       {/* Hero Section */}
-      <section className="relative h-[500px]">
+      <section className="relative overflow-hidden bg-obsidian">
         <div className="absolute inset-0">
           <ImageWithFallback
             src={phblack}
             alt="Car importation"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent" />
         </div>
 
-        <div className="relative h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
-            <div className="max-w-2xl">
-              <h1 className="text-white mb-6 font-display text-5xl sm:text-6xl font-bold tracking-tight leading-tight">
-                Global Vehicle Importation
-              </h1>
-              <p className="text-white/90 mb-8 leading-relaxed text-xl text-left">
-                Access the world's finest vehicles. We handle every aspect of
-                international car importation with expertise and precision.
-              </p>
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
+          <div className="max-w-2xl">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand">
+              Global Reach
+            </span>
+            <h1 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+              World-Class Vehicle<br className="hidden sm:block" /> Importation
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+              We source and import the world's finest vehicles — handling every step with expertise and precision.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["🇯🇵 Japan", "🇬🇧 UK", "🇺🇸 USA", "🇦🇪 Dubai", "🇩🇪 Germany"].map((c) => (
+                <span key={c} className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur-sm">
+                  {c}
+                </span>
+              ))}
+            </div>
+            <div className="mt-8">
               <Button
                 onClick={() => setIsImportFormOpen(true)}
-                className="bg-white text-black hover:bg-gray-200 font-medium"
+                className="bg-brand text-white hover:bg-brand-strong shadow-luxe"
                 size="lg"
               >
                 Start Your Import Request
@@ -888,7 +899,7 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="mb-4 font-display text-4xl font-bold text-foreground">
+            <h2 className="mb-4 font-display text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
               Why Import With Platinum Helms
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -921,7 +932,7 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="mb-4 font-display text-4xl font-bold text-foreground">Our Import Process</h2>
+            <h2 className="mb-4 font-display text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">Our Import Process</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               A transparent, efficient process from selection to delivery.
             </p>
@@ -1297,7 +1308,7 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
                     <div className="flex gap-2">
                       <Button
                         className="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium"
-                        onClick={() => alert("Bidding system coming soon!")}
+                        onClick={() => toast.info("Bidding system coming soon!", { description: "We're working on it — check back soon." })}
                       >
                         Place Bid
                       </Button>
@@ -1354,7 +1365,7 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="mb-4 font-display text-4xl font-bold text-foreground">
+            <h2 className="mb-4 font-display text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
               Available Import Vehicles
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -1672,7 +1683,7 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
       <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="mb-4 font-display text-4xl font-bold text-foreground">
+            <h2 className="mb-4 font-display text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
               Popular Import Markets
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -1775,7 +1786,7 @@ export function CarImportationPage({ onNavigate }: CarImportationPageProps) {
       {/* Contact Form */}
       <section className="py-24 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="mb-4 font-display text-4xl font-bold text-foreground">
+          <h2 className="mb-4 font-display text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Request an Import Quote
           </h2>
           <p className="text-gray-600 text-lg mb-8">

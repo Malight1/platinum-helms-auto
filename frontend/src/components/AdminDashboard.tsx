@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import api from "@/lib/api";
 import { Card } from "../components/card";
 import { Button } from "../components/button";
@@ -212,14 +213,24 @@ export function AdminDashboard() {
     [vehicles],
   );
 
-  const deleteVehicle = async (id: number) => {
-    if (!window.confirm("Delete this vehicle from inventory?")) return;
+  const deleteVehicle = (id: number) => {
+    toast("Delete this vehicle?", {
+      description: "This will permanently remove it from inventory.",
+      action: { label: "Delete", onClick: () => doDeleteVehicle(id) },
+      cancel: { label: "Cancel", onClick: () => {} },
+      duration: 8000,
+    });
+  };
+
+  const doDeleteVehicle = async (id: number) => {
     setActionId(`vehicle-${id}`);
     try {
       await api.cars.delete(id);
       await loadDashboard(searchTerm, true);
+      toast.success("Vehicle deleted.");
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Unable to delete vehicle");
+      toast.error("Failed to delete vehicle.");
     } finally {
       setActionId(null);
     }
@@ -249,14 +260,24 @@ export function AdminDashboard() {
     }
   };
 
-  const deleteContact = async (id: number) => {
-    if (!window.confirm("Delete this contact message?")) return;
+  const deleteContact = (id: number) => {
+    toast("Delete this contact message?", {
+      description: "This action cannot be undone.",
+      action: { label: "Delete", onClick: () => doDeleteContact(id) },
+      cancel: { label: "Cancel", onClick: () => {} },
+      duration: 8000,
+    });
+  };
+
+  const doDeleteContact = async (id: number) => {
     setActionId(`contact-${id}`);
     try {
       await api.leads.delete("contact", id);
       await loadDashboard(searchTerm, true);
+      toast.success("Contact deleted.");
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Unable to delete contact");
+      toast.error("Failed to delete contact.");
     } finally {
       setActionId(null);
     }
