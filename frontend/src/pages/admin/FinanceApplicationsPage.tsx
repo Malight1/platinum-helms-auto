@@ -33,15 +33,15 @@ type FinancingLead = {
   selectedCar?: { name?: string; brand?: string; model?: string } | null;
 };
 
-const statusVariant: Record<string, string> = {
-  approved: "bg-green-100 text-green-800 border-green-200",
-  pending: "bg-amber-100 text-amber-800 border-amber-200",
-  rejected: "bg-red-100 text-red-700 border-red-200",
-  contacted: "bg-blue-100 text-blue-800 border-blue-200",
+const statusColors: Record<string, string> = {
+  approved: "bg-emerald-500/15 text-emerald-400 border-emerald-500/25",
+  pending: "bg-amber-500/15 text-amber-400 border-amber-500/25",
+  rejected: "bg-red-500/15 text-red-400 border-red-500/25",
+  contacted: "bg-blue-500/15 text-blue-400 border-blue-500/25",
 };
 
 function StatusBadge({ status }: { status?: string }) {
-  const cls = statusVariant[(status || "").toLowerCase()] || "bg-gray-100 text-gray-600 border-gray-200";
+  const cls = statusColors[(status || "").toLowerCase()] ?? "bg-white/10 text-white/40 border-white/15";
   return (
     <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${cls}`}>
       {labelStatus(status)}
@@ -113,8 +113,8 @@ export default function FinanceApplicationsPage() {
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="font-display text-2xl font-bold text-gray-900">Finance Applications</h1>
-          <p className="text-sm text-gray-500">Review financing leads submitted from the public site.</p>
+          <h1 className="font-display text-2xl font-bold text-white">Finance Applications</h1>
+          <p className="mt-0.5 text-sm text-white/50">Review financing leads submitted from the public site.</p>
         </div>
         <Button onClick={exportApplications} className="bg-brand hover:bg-brand-strong text-white">
           <Download size={15} className="mr-1.5" /> Export Applications
@@ -122,15 +122,19 @@ export default function FinanceApplicationsPage() {
       </div>
 
       {error && (
-        <div className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
           <AlertTriangle size={15} className="mt-0.5 shrink-0" /> {error}
         </div>
       )}
 
-      <Card className="overflow-hidden border-none shadow-sm">
-        <div className="border-b border-gray-100 p-5">
+      <Card className="overflow-hidden rounded-2xl border border-white/[0.08] bg-obsidian-soft shadow-none">
+        <div className="flex flex-col gap-4 border-b border-white/[0.06] p-5 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="font-display text-base font-semibold text-white">Applications</h2>
+            <p className="mt-0.5 text-xs text-white/40">{applications.length} application{applications.length !== 1 ? "s" : ""}</p>
+          </div>
           <Input
-            className="md:max-w-sm"
+            className="border-white/[0.12] bg-white/[0.05] text-white placeholder:text-white/30 md:max-w-sm"
             placeholder="Search by name or email…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -139,87 +143,87 @@ export default function FinanceApplicationsPage() {
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="bg-gray-50/50">
-                <TableHead className="font-semibold">Applicant</TableHead>
-                <TableHead className="font-semibold">Vehicle</TableHead>
-                <TableHead className="font-semibold">Employment</TableHead>
-                <TableHead className="font-semibold">Financials</TableHead>
-                <TableHead className="font-semibold">Status</TableHead>
-                <TableHead className="font-semibold">Date</TableHead>
-                <TableHead className="text-right font-semibold">Actions</TableHead>
+              <TableRow className="border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.02]">
+                <TableHead className="text-xs font-semibold uppercase tracking-wider text-white/40">Applicant</TableHead>
+                <TableHead className="text-xs font-semibold uppercase tracking-wider text-white/40">Vehicle</TableHead>
+                <TableHead className="text-xs font-semibold uppercase tracking-wider text-white/40">Employment</TableHead>
+                <TableHead className="text-xs font-semibold uppercase tracking-wider text-white/40">Financials</TableHead>
+                <TableHead className="text-xs font-semibold uppercase tracking-wider text-white/40">Status</TableHead>
+                <TableHead className="text-xs font-semibold uppercase tracking-wider text-white/40">Date</TableHead>
+                <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-white/40">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {isLoading && (
-                <TableRow>
-                  <TableCell colSpan={7} className="py-12 text-center">
-                    <Loader2 size={20} className="mx-auto animate-spin text-gray-400" />
+                <TableRow className="border-white/[0.06]">
+                  <TableCell colSpan={7} className="py-16 text-center">
+                    <Loader2 size={20} className="mx-auto animate-spin text-white/30" />
                   </TableCell>
                 </TableRow>
               )}
               {!isLoading && applications.length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={7} className="py-12 text-center text-muted-foreground">
+                <TableRow className="border-white/[0.06]">
+                  <TableCell colSpan={7} className="py-16 text-center text-sm text-white/30">
                     No finance applications found.
                   </TableCell>
                 </TableRow>
               )}
               {applications.map((app) => (
-                <TableRow key={app.id} className="hover:bg-gray-50/50">
+                <TableRow key={app.id} className="border-white/[0.06] hover:bg-white/[0.025]">
                   <TableCell>
-                    <div className="font-medium text-gray-900">
+                    <div className="font-medium text-white">
                       {`${app.firstName || ""} ${app.lastName || ""}`.trim() || "Unnamed applicant"}
                     </div>
-                    <div className="text-sm text-gray-500">{app.email}</div>
-                    <div className="text-sm text-gray-500">{app.phone}</div>
+                    <div className="text-xs text-white/45">{app.email}</div>
+                    <div className="text-xs text-white/40">{app.phone}</div>
                   </TableCell>
-                  <TableCell className="text-gray-700">
+                  <TableCell className="text-sm text-white/70">
                     {app.selectedCar?.name ||
                       `${app.selectedCar?.brand || ""} ${app.selectedCar?.model || ""}`.trim() ||
-                      "N/A"}
+                      "—"}
                   </TableCell>
-                  <TableCell className="text-sm text-gray-600">
-                    <div>{labelStatus(app.employmentStatus)}</div>
-                    <div>{app.employer || "N/A"}</div>
-                    <div>{app.jobTitle || "N/A"}</div>
+                  <TableCell>
+                    <div className="text-sm text-white/70">{labelStatus(app.employmentStatus)}</div>
+                    <div className="text-xs text-white/45">{app.employer || "—"}</div>
+                    <div className="text-xs text-white/40">{app.jobTitle || "—"}</div>
                   </TableCell>
-                  <TableCell className="text-sm text-gray-600">
-                    <div>Monthly: {app.monthlyIncome || "N/A"}</div>
-                    <div>Annual: {app.annualIncome || "N/A"}</div>
-                    <div>Deposit: {formatCurrency(app.initialDepositBudget)}</div>
+                  <TableCell>
+                    <div className="text-xs text-white/60">Monthly: <span className="text-white/80">{app.monthlyIncome || "—"}</span></div>
+                    <div className="text-xs text-white/60">Annual: <span className="text-white/80">{app.annualIncome || "—"}</span></div>
+                    <div className="text-xs text-white/60">Deposit: <span className="font-medium text-brand">{formatCurrency(app.initialDepositBudget)}</span></div>
                   </TableCell>
                   <TableCell>
                     <StatusBadge status={app.status} />
                   </TableCell>
-                  <TableCell className="text-sm text-gray-500">{formatDate(app.submissionDate)}</TableCell>
+                  <TableCell className="text-xs text-white/40">{formatDate(app.submissionDate)}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
-                      <Button
-                        variant="ghost"
-                        size="sm"
+                      <button
+                        type="button"
                         onClick={() => updateStatus(app.id, "approved")}
                         disabled={actionId === `${app.id}-approved`}
                         title="Approve"
+                        className="flex size-8 items-center justify-center rounded-lg transition hover:bg-emerald-500/10 disabled:opacity-50"
                       >
                         {actionId === `${app.id}-approved` ? (
-                          <Loader2 size={15} className="animate-spin" />
+                          <Loader2 size={14} className="animate-spin text-white/40" />
                         ) : (
-                          <CheckCircle size={15} className="text-green-600" />
+                          <CheckCircle size={15} className="text-emerald-400" />
                         )}
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
+                      </button>
+                      <button
+                        type="button"
                         onClick={() => updateStatus(app.id, "rejected")}
                         disabled={actionId === `${app.id}-rejected`}
                         title="Reject"
+                        className="flex size-8 items-center justify-center rounded-lg transition hover:bg-red-500/10 disabled:opacity-50"
                       >
                         {actionId === `${app.id}-rejected` ? (
-                          <Loader2 size={15} className="animate-spin" />
+                          <Loader2 size={14} className="animate-spin text-white/40" />
                         ) : (
-                          <XCircle size={15} className="text-red-500" />
+                          <XCircle size={15} className="text-red-400" />
                         )}
-                      </Button>
+                      </button>
                     </div>
                   </TableCell>
                 </TableRow>
