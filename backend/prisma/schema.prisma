@@ -6,8 +6,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  // Runtime: Supabase transaction pooler (port 6543, pgbouncer).
+  url       = env("DATABASE_URL")
+  // Migrations / introspection: direct or session connection (port 5432).
+  directUrl = env("DIRECT_URL")
 }
 
 // ============================================================================
@@ -46,6 +49,9 @@ model Car {
   category    String   // "luxury", "sedan", "suv", "sports", etc.
   bodyType    String   // "Sedan", "SUV", "Coupe", "Hatchback", "Truck", "Van"
   condition   String   // "New", "Foreign Used", "Nigerian Used"
+
+  // Listing type: "purchase" = in-country, ready to buy; "importation" = to be imported
+  listingType String   @default("purchase")
   
   // Pricing & Financial
   price       Decimal  @db.Decimal(15, 2) // Nigerian Naira, e.g., 25000000.00

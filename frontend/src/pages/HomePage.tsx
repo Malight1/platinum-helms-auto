@@ -141,8 +141,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <section className="relative flex min-h-screen items-center overflow-hidden bg-obsidian">
         <div className="absolute inset-0">
           <ImageWithFallback src={phblack} alt="Luxury vehicle on display" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/75 to-obsidian/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-transparent" />
         </div>
 
         <div className="relative mx-auto w-full max-w-7xl px-4 pt-28 sm:px-6 lg:px-8">
@@ -153,7 +153,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              <h1 className="font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
                 Find Your <span className="text-brand">Dream Car</span> Today
               </h1>
             </Reveal>
@@ -199,13 +199,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* ── Trust strip ──────────────────────────────────── */}
-      <section className="bg-obsidian-soft py-12 text-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 text-center sm:px-6 md:grid-cols-4 lg:px-8">
+      <section className="border-y border-white/[0.07] bg-obsidian-soft py-10 text-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-white/[0.07] px-4 sm:px-6 md:grid-cols-4 lg:px-8">
           {trustItems.map(({ Icon, title, sub }) => (
-            <div key={title} className="flex flex-col items-center">
-              <Icon className="mb-3 text-brand" size={30} />
-              <div className="font-display text-xl">{title}</div>
-              <div className="mt-1 text-sm text-white/55">{sub}</div>
+            <div key={title} className="flex flex-col items-center gap-2 px-4 py-2 text-center first:pl-0 last:pr-0">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-brand/10">
+                <Icon className="text-brand" size={22} />
+              </div>
+              <div className="font-display text-sm font-semibold tracking-wide">{title}</div>
+              <div className="text-xs text-white/45">{sub}</div>
             </div>
           ))}
         </div>
@@ -340,9 +342,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                         <h3 className="mt-1 font-display text-2xl font-semibold text-foreground">{vehicle.name}</h3>
                         <p className="mt-1 text-2xl font-semibold text-brand">{formatCurrency(vehicle.price)}</p>
                         <div className="mt-3 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                          <span>{vehicle.transmission}</span><span>•</span>
-                          <span>{vehicle.fuelType}</span><span>•</span>
-                          <span>{vehicle.mileage.toLocaleString()} mi</span>
+                          <span>{vehicle.transmission}</span><span>·</span>
+                          <span>{vehicle.fuelType}</span><span>·</span>
+                          <span>{vehicle.mileage > 0 ? `${vehicle.mileage.toLocaleString()} km` : "Brand New"}</span>
                         </div>
                         <div className="mt-4 space-y-1">
                           {vehicle.features.slice(0, 3).map((feature) => (
@@ -441,27 +443,34 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <Eyebrow>Exclusive Services</Eyebrow>
             <h2 className="font-display text-4xl font-bold text-foreground sm:text-5xl">Beyond Our Inventory</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Looking for something special? Explore our custom importation service or bid on exclusive auction vehicles.
+              Looking for something special? Explore our custom importation service or stay tuned for what's coming next.
             </p>
           </Reveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {[
-              { img: phblack, badge: "Bespoke Service", Icon: Sparkles, title: "Custom Importation Orders", body: "Can't find it in our inventory? We'll source your dream vehicle from anywhere in the world.", cta: "Start Custom Order", to: "importation" },
-              { img: phred, badge: "Live Auctions", Icon: Hammer, title: "Premium Vehicle Auctions", body: "Bid on exclusive luxury vehicles with full transparency on condition, history, and importation.", cta: "Browse Auctions", to: "importation" },
-            ].map(({ img, badge, Icon, title, body, cta, to }, i) => (
+              { img: phblack, badge: "Bespoke Service", Icon: Sparkles, title: "Custom Importation Orders", body: "Can't find it in our inventory? We'll source your dream vehicle from anywhere in the world.", cta: "Start Custom Order", to: "importation", comingSoon: false },
+              { img: phred, badge: "Coming Soon", Icon: Hammer, title: "Premium Vehicle Auctions", body: "Our exclusive auction platform is launching soon — bid on premium vehicles with full transparency on condition and history.", cta: "", to: "", comingSoon: true },
+            ].map(({ img, badge, Icon, title, body, cta, to, comingSoon }, i) => (
               <Reveal key={title} delay={i * 0.08}>
                 <Card className="group relative h-80 overflow-hidden rounded-2xl border-none">
-                  <ImageWithFallback src={img} alt={title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <ImageWithFallback src={img} alt={title} className={`h-full w-full object-cover transition-transform duration-700 ${comingSoon ? "" : "group-hover:scale-105"}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/50 to-transparent" />
+                  {comingSoon && <div className="absolute inset-0 bg-obsidian/40" />}
                   <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
-                    <Badge className="mb-3 w-fit gap-2 border-none bg-brand uppercase tracking-wide text-white">
+                    <Badge className={`mb-3 w-fit gap-2 border-none uppercase tracking-wide text-white ${comingSoon ? "bg-white/15" : "bg-brand"}`}>
                       <Icon size={14} /> {badge}
                     </Badge>
                     <h3 className="font-display text-2xl font-semibold">{title}</h3>
                     <p className="mt-2 max-w-md text-sm text-white/80">{body}</p>
-                    <Button onClick={() => onNavigate(to)} className="mt-5 w-fit gap-2 bg-white text-obsidian hover:bg-white/90">
-                      {cta} <ArrowRight size={16} />
-                    </Button>
+                    {comingSoon ? (
+                      <span className="mt-5 inline-flex w-fit cursor-default items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm text-white/50">
+                        <Clock size={14} /> Launching Soon
+                      </span>
+                    ) : (
+                      <Button onClick={() => onNavigate(to)} className="mt-5 w-fit gap-2 bg-white text-obsidian hover:bg-white/90">
+                        {cta} <ArrowRight size={16} />
+                      </Button>
+                    )}
                   </div>
                 </Card>
               </Reveal>

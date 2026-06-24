@@ -82,6 +82,14 @@ const updateCarValidation = [
 router.get('/', authenticateToken, validatePagination, carController.getAdminCars);
 
 /**
+ * @route   GET /api/v1/admin/cars/meta
+ * @desc    Get distinct features and tags for the picker
+ * @access  Private (Admin)
+ * @note    Must be declared before '/:id' so "meta" isn't parsed as an id.
+ */
+router.get('/meta', authenticateToken, carController.getCarMeta);
+
+/**
  * @route   GET /api/v1/admin/cars/:id
  * @desc    Get single car by ID (admin view)
  * @access  Private (Admin)

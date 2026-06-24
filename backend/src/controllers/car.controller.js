@@ -196,6 +196,19 @@ const deleteCarImage = catchAsync(async (req, res) => {
 });
 
 /**
+ * Get distinct features and tags (admin)
+ * @route GET /api/v1/admin/cars/meta
+ * @access Private (Admin)
+ */
+const getCarMeta = catchAsync(async (req, res) => {
+  const meta = await carService.getCarMeta();
+
+  res.status(STATUS.OK).json(
+    successResponse(meta, 'Car metadata retrieved successfully')
+  );
+});
+
+/**
  * Get brands
  * @route GET /api/v1/cars/brands
  * @access Public
@@ -245,6 +258,7 @@ module.exports = {
   deleteCar,
   uploadCarImages,
   deleteCarImage,
+  getCarMeta,
   getBrands,
   getModelsByBrand,
   getPriceRange,

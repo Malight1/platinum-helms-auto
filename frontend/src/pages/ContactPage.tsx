@@ -22,9 +22,9 @@ import {
 const initialForm = { name: "", email: "", phone: "", subject: "", message: "" };
 
 const contactCards = [
-  { Icon: Phone, title: "Phone", lines: ["+234 812 345 6789", "+234 909 876 5432"] },
+  { Icon: Phone, title: "Phone / WhatsApp", lines: ["+1 (780) 884-0893"] },
   { Icon: Mail, title: "Email", lines: ["info@platinumhelms.com", "sales@platinumhelms.com"] },
-  { Icon: MapPin, title: "Address", lines: ["123 Luxury Auto Boulevard", "Victoria Island, Lagos"] },
+  { Icon: MapPin, title: "Address", lines: ["Km 74 Ikota Lekki Expressway"] },
   { Icon: Clock, title: "Business Hours", lines: ["Mon – Fri: 9am – 7pm", "Sat: 10am – 6pm · Sun: Closed"] },
 ];
 
@@ -34,7 +34,7 @@ export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const phoneNumber = "2348123456789";
+  const phoneNumber = "17808840893";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     "Hello! I have a question about Platinum Helms.",
   )}`;
@@ -63,16 +63,35 @@ export function ContactPage() {
   return (
     <div className="bg-background">
       {/* Hero */}
-      <section className="relative flex h-[48vh] min-h-80 items-center justify-center overflow-hidden bg-obsidian">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-obsidian via-obsidian to-slate-deep" />
-          <div className="pointer-events-none absolute -top-20 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-brand/15 blur-3xl" />
-        </div>
-        <Reveal className="relative px-4 text-center">
-          <h1 className="font-display text-5xl font-bold tracking-tight text-white sm:text-6xl">Contact Us</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
-            Get in touch with our team of automotive experts.
+      <section className="relative overflow-hidden bg-obsidian py-24 pt-32 sm:py-28 sm:pt-36 lg:pt-40">
+        <div className="absolute inset-0 bg-gradient-to-br from-obsidian via-obsidian to-slate-deep" />
+        <div className="pointer-events-none absolute -top-20 left-1/4 h-80 w-96 -translate-x-1/2 rounded-full bg-brand/10 blur-3xl" />
+        <div className="pointer-events-none absolute right-1/4 top-0 h-64 w-80 rounded-full bg-brand/8 blur-3xl" />
+        {/* Subtle grid */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+        <Reveal className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand">
+            Get In Touch
+          </span>
+          <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+            Let's Start a Conversation
+          </h1>
+          <p className="mx-auto mt-5 max-w-xl text-base text-white/70 sm:text-lg">
+            Our team of automotive experts is ready to help you find, finance, or import your dream vehicle.
           </p>
+          {/* Quick contact chips */}
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="tel:+17808840893" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white/80 transition hover:border-white/40 hover:bg-white/10">
+              <Phone className="size-3.5" /> +1 (780) 884-0893
+            </a>
+            <a href="mailto:info@platinumhelms.com" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white/80 transition hover:border-white/40 hover:bg-white/10">
+              <Mail className="size-3.5" /> info@platinumhelms.com
+            </a>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-[#25D366]/30 bg-[#25D366]/10 px-4 py-2 text-sm text-[#25D366] transition hover:bg-[#25D366]/20">
+              <MessageCircle className="size-3.5" /> WhatsApp
+            </a>
+          </div>
         </Reveal>
       </section>
 
@@ -86,14 +105,20 @@ export function ContactPage() {
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {contactCards.map(({ Icon, title, lines }) => (
-                <Card key={title} className="rounded-2xl border-border p-6">
-                  <div className="mb-3 flex size-11 items-center justify-center rounded-xl bg-brand text-white">
-                    <Icon className="size-5" />
+                <Card key={title} className="rounded-2xl border-border p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand text-white">
+                      <Icon className="size-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-sans text-sm font-semibold text-foreground">{title}</h3>
+                      <div className="mt-0.5 space-y-0.5">
+                        {lines.map((l) => (
+                          <p key={l} className="break-words text-sm text-muted-foreground">{l}</p>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-sans text-base font-semibold text-foreground">{title}</h3>
-                  {lines.map((l) => (
-                    <p key={l} className="text-sm text-muted-foreground">{l}</p>
-                  ))}
                 </Card>
               ))}
             </div>
@@ -141,7 +166,7 @@ export function ContactPage() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+234 812 345 6789" />
+                    <Input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="+1 (780) 884-0893" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="subject">Subject *</Label>
@@ -180,7 +205,7 @@ export function ContactPage() {
           <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
             <iframe
               title="Platinum Helms showroom location"
-              src="https://www.google.com/maps?q=Victoria%20Island%20Lagos&output=embed"
+              src="https://www.google.com/maps?q=Ikota+Lekki+Expressway+Lagos&output=embed"
               className="h-96 w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

@@ -7,6 +7,15 @@ const { CAR_STATUS, LEAD_STATUS } = require('../config/constants');
  * @returns {Promise<object>} Dashboard stats
  */
 const getDashboardStats = async () => {
+  // Resolve a query but never let a single failure take down the whole
+  // dashboard — return a safe fallback and keep going. This keeps the
+  // endpoint resilient on flaky/connection-limited database hosts.
+  const safe = (promise, fallback) =>
+    promise.catch((error) => {
+      console.error('Dashboard stat query failed:', error.message);
+      return fallback;
+    });
+
   // Execute all queries in parallel for performance
   const [
     totalCars,
@@ -24,40 +33,40 @@ const getDashboardStats = async () => {
     recentImportationLeads,
   ] = await Promise.all([
     // Car statistics
-    prisma.car.count(),
-    prisma.car.count({
+    safe(prisma.car.count(), 0),
+    safe(prisma.car.count({
       where: {
         status: CAR_STATUS.AVAILABLE,
         visibility: true,
       },
-    }),
-    prisma.car.count({
+    }), 0),
+    safe(prisma.car.count({
       where: { status: CAR_STATUS.SOLD },
-    }),
+    }), 0),
 
     // Financing lead statistics
-    prisma.financingLead.count(),
-    prisma.financingLead.count({
+    safe(prisma.financingLead.count(), 0),
+    safe(prisma.financingLead.count({
       where: { status: LEAD_STATUS.PENDING },
-    }),
-    prisma.financingLead.count({
+    }), 0),
+    safe(prisma.financingLead.count({
       where: { status: LEAD_STATUS.APPROVED },
-    }),
+    }), 0),
 
     // Importation lead statistics
-    prisma.importationLead.count(),
-    prisma.importationLead.count({
+    safe(prisma.importationLead.count(), 0),
+    safe(prisma.importationLead.count({
       where: { status: LEAD_STATUS.PENDING },
-    }),
+    }), 0),
 
     // Contact message statistics
-    prisma.contactMessage.count(),
-    prisma.contactMessage.count({
+    safe(prisma.contactMessage.count(), 0),
+    safe(prisma.contactMessage.count({
       where: { status: 'new' },
-    }),
+    }), 0),
 
     // Popular cars (top 5 by views)
-    prisma.car.findMany({
+    safe(prisma.car.findMany({
       where: {
         visibility: true,
         status: CAR_STATUS.AVAILABLE,
@@ -78,10 +87,10 @@ const getDashboardStats = async () => {
           select: { url: true },
         },
       },
-    }),
+    }), []),
 
     // Recent financing leads
-    prisma.financingLead.findMany({
+    safe(prisma.financingLead.findMany({
       orderBy: { submissionDate: 'desc' },
       take: 5,
       select: {
@@ -100,10 +109,10 @@ const getDashboardStats = async () => {
           },
         },
       },
-    }),
+    }), []),
 
     // Recent importation leads
-    prisma.importationLead.findMany({
+    safe(prisma.importationLead.findMany({
       orderBy: { submissionDate: 'desc' },
       take: 5,
       select: {
@@ -114,7 +123,7 @@ const getDashboardStats = async () => {
         status: true,
         submissionDate: true,
       },
-    }),
+    }), []),
   ]);
 
   // Format popular cars

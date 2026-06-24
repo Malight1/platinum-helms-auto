@@ -4,9 +4,8 @@ import { Button } from "../components/button";
 import { Card } from "../components/card";
 import { Users, Award, Globe, Heart, Target, Zap, Star } from "lucide-react";
 import phblack from "../assets/phblack.png";
-import phred from "../assets/phred.png";
-import phwhite from "../assets/phwhite.png";
 import mrugo from "../assets/mrugo.jpg";
+import afolabigladys from "../assets/afolabigladys.PNG";
 
 interface AboutUsPageProps {
   onNavigate: (page: string) => void;
@@ -29,48 +28,47 @@ const stats = [
 ];
 
 const team = [
-  { name: "Michael Chen", role: "Chief Executive Officer", image: phblack },
-  { name: "Sarah Williams", role: "Director of Operations", image: phred },
-  { name: "David Rodriguez", role: "Head of Customer Relations", image: phwhite },
+  { name: "Ugochukwu Ifeanacho", role: "CEO", image: null },
+  { name: "Mrs Afolabi Gladys .U.", role: "Director, Partnerships", image: afolabigladys },
 ];
 
 const testimonials = [
-  { quote: "The entire experience was exceptional. From selection to delivery, the team made the process seamless and enjoyable.", name: "James Morrison", detail: "Purchased S-Class" },
-  { quote: "Their import service exceeded my expectations. They handled everything professionally and kept me informed throughout.", name: "Emily Richardson", detail: "Imported from Europe" },
-  { quote: "Best financing experience I've had. Transparent, fair, and incredibly helpful in finding the perfect terms.", name: "Robert Chen", detail: "Financed AMG GT" },
+  { quote: "I got my Honda Accord 2013 through Platinum Helms and the whole process was smooth from start to finish. No stress, no wahala — just my car delivered to my door.", name: "Chukwuemeka Obi", detail: "Purchased Honda Accord 2013" },
+  { quote: "They imported my Lexus RX350 from Canada and handled everything — customs, documentation, shipping. I just paid and waited. Best decision I made.", name: "Funmilayo Adeyemi", detail: "Imported Lexus RX350 from Canada" },
+  { quote: "Got a brand new Mercedes GLE350 on their financing plan. The terms were fair and they were very transparent. I've already referred three people.", name: "Tunde Bakare", detail: "Financed Mercedes-Benz GLE350" },
 ];
 
 export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
   return (
     <div className="bg-background">
       {/* Hero */}
-      <section className="relative flex h-[560px] items-center overflow-hidden bg-obsidian">
+      <section className="relative overflow-hidden bg-obsidian">
         <div className="absolute inset-0">
           <ImageWithFallback src={phblack} alt="About Platinum Helms" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-obsidian/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
         </div>
-        <div className="relative mx-auto w-full max-w-7xl px-4 pt-20 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
           <Reveal className="max-w-2xl">
-            <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl">
-              Redefining Luxury Automotive Excellence
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand">
+              Est. 2010 · Our Story
+            </span>
+            <h1 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
+              Redefining Luxury<br className="hidden sm:block" /> Automotive Excellence
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-white/80">
-              For over 15 years, we've connected discerning clients with the world's finest luxury
-              vehicles, delivering exceptional experiences at every turn.
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+              For over 15 years, connecting discerning clients with the world's finest luxury vehicles.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="bg-obsidian-soft py-16 text-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="font-display text-5xl font-bold text-brand">{s.number}</div>
-              <p className="mt-2 text-sm tracking-wide text-white/65">{s.label}</p>
-            </div>
-          ))}
+          {/* Stats embedded at bottom of hero */}
+          <Reveal delay={0.1} className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            {stats.map((s) => (
+              <div key={s.label} className="border-l border-white/20 pl-4">
+                <div className="font-display text-2xl font-bold text-brand sm:text-3xl">{s.number}</div>
+                <p className="mt-0.5 text-xs tracking-wide text-white/55 sm:text-sm">{s.label}</p>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
@@ -97,7 +95,7 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
       <section className="bg-obsidian-soft py-24 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="mx-auto mb-16 max-w-2xl text-center">
-            <h2 className="font-display text-4xl font-bold sm:text-5xl">Our Core Values</h2>
+            <h2 className="font-display text-3xl font-bold sm:text-4xl lg:text-5xl">Our Core Values</h2>
             <p className="mt-3 text-lg text-white/65">The principles that guide everything we do and define who we are.</p>
           </Reveal>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -144,19 +142,39 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
       <section className="bg-obsidian-soft py-24 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="mx-auto mb-16 max-w-2xl text-center">
-            <h2 className="font-display text-4xl font-bold sm:text-5xl">Meet Our Leadership</h2>
-            <p className="mt-3 text-lg text-white/65">Experienced professionals dedicated to delivering exceptional service.</p>
+            <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-brand/80">The People Behind the Brand</p>
+            <h2 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Meet Our<br className="hidden xs:block sm:hidden" /> Leadership
+            </h2>
+            <div className="mx-auto mt-5 h-px w-10 bg-brand/40" />
+            <p className="mt-5 text-base leading-relaxed text-white/55 sm:text-lg">
+              Experienced professionals dedicated to delivering exceptional service.
+            </p>
           </Reveal>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="mx-auto grid max-w-3xl grid-cols-1 gap-8 sm:grid-cols-2">
             {team.map((member, i) => (
-              <Reveal key={member.name} delay={i * 0.08}>
-                <Card className="group overflow-hidden rounded-2xl border-white/10 bg-card/5">
-                  <div className="h-80 overflow-hidden">
-                    <ImageWithFallback src={member.image} alt={member.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <Reveal key={member.name} delay={i * 0.1}>
+                <Card className="group overflow-hidden rounded-2xl border-white/[0.08] bg-white/[0.03]">
+                  <div className="h-80 overflow-hidden bg-obsidian">
+                    {member.image ? (
+                      <ImageWithFallback
+                        src={member.image}
+                        alt={member.name}
+                        className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-b from-obsidian-soft to-obsidian">
+                        <svg viewBox="0 0 100 100" className="h-28 w-28 text-white/15" fill="currentColor" aria-hidden="true">
+                          <circle cx="50" cy="36" r="20" />
+                          <path d="M8 88c0-23.2 18.8-42 42-42s42 18.8 42 42" />
+                        </svg>
+                        <p className="mt-4 text-xs uppercase tracking-widest text-white/20">Photo Coming Soon</p>
+                      </div>
+                    )}
                   </div>
-                  <div className="p-6 text-center">
-                    <h3 className="font-display text-2xl font-semibold text-white">{member.name}</h3>
-                    <p className="mt-1 text-sm text-white/60">{member.role}</p>
+                  <div className="p-7 text-center">
+                    <h3 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">{member.name}</h3>
+                    <p className="mt-1.5 text-xs font-semibold uppercase tracking-widest text-brand/70">{member.role}</p>
                   </div>
                 </Card>
               </Reveal>
@@ -194,7 +212,7 @@ export function AboutUsPage({ onNavigate }: AboutUsPageProps) {
       {/* CTA */}
       <section className="bg-obsidian py-24 text-center text-white">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-4xl font-bold sm:text-5xl">Ready to Start Your Journey?</h2>
+          <h2 className="font-display text-3xl font-bold sm:text-4xl lg:text-5xl">Ready to Start Your Journey?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70">
             Experience the Platinum Helms difference. Let us help you find your perfect luxury vehicle.
           </p>

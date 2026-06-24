@@ -245,6 +245,13 @@ export const api = {
     },
 
     /**
+     * Get distinct features and tags used across inventory (admin)
+     */
+    getMeta: async () => {
+      return fetchApi<{ features: string[]; tags: string[] }>('/admin/cars/meta');
+    },
+
+    /**
      * Create car
      */
     create: async (carData: any) => {

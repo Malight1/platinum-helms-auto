@@ -287,6 +287,36 @@ const deleteCarImage = async (carId, imageId) => {
 };
 
 /**
+ * Get distinct features and tags used across all cars.
+ * Powers the admin feature/tag picker suggestions.
+ * @returns {Promise<{features: string[], tags: string[]}>}
+ */
+const getCarMeta = async () => {
+  const cars = await prisma.car.findMany({
+    select: { features: true, tags: true },
+  });
+
+  const featureSet = new Set();
+  const tagSet = new Set();
+
+  for (const car of cars) {
+    (car.features || []).forEach((f) => {
+      if (f && f.trim()) featureSet.add(f.trim());
+    });
+    (car.tags || []).forEach((t) => {
+      if (t && t.trim()) tagSet.add(t.trim());
+    });
+  }
+
+  const sortAlpha = (a, b) => a.localeCompare(b);
+
+  return {
+    features: Array.from(featureSet).sort(sortAlpha),
+    tags: Array.from(tagSet).sort(sortAlpha),
+  };
+};
+
+/**
  * Get unique brands with car count
  * @returns {Promise<array>} Brands with counts
  */
@@ -371,6 +401,7 @@ module.exports = {
   incrementViews,
   addCarImages,
   deleteCarImage,
+  getCarMeta,
   getBrands,
   getModelsByBrand,
   getPriceRange,

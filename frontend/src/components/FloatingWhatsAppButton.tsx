@@ -5,7 +5,7 @@ export function FloatingWhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
   
   // Replace with your actual WhatsApp business number (format: country code + number, no + or spaces)
-  const phoneNumber = "15551234567"; // Example: US number
+  const phoneNumber = "17808840893";
   const message = "Hello! I'm interested in learning more about Platinum Helms vehicles.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

@@ -36,6 +36,7 @@ const ComingSoonPage = lazy(() =>
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminDashboardWrapper = lazy(() => import("./components/AdminDashboardWrapper"));
 const VehicleInventoryPage = lazy(() => import("./pages/admin/VehicleInventoryPage"));
+const VehicleCatalogPage = lazy(() => import("./pages/admin/VehicleCatalogPage"));
 const FinanceApplicationsPage = lazy(() => import("./pages/admin/FinanceApplicationsPage"));
 const ContactLeadsPage = lazy(() => import("./pages/admin/ContactLeadsPage"));
 const AdminSettingsPage = lazy(() => import("./pages/admin/AdminSettingsPage"));
@@ -195,6 +196,16 @@ export default function App() {
                     <ProtectedAdminRoute>
                       <AdminDashboardWrapper>
                         <VehicleInventoryPage />
+                      </AdminDashboardWrapper>
+                    </ProtectedAdminRoute>
+                  }
+                />
+                <Route
+                  path="/admin/catalog"
+                  element={
+                    <ProtectedAdminRoute>
+                      <AdminDashboardWrapper>
+                        <VehicleCatalogPage />
                       </AdminDashboardWrapper>
                     </ProtectedAdminRoute>
                   }

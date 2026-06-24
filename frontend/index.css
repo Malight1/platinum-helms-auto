@@ -10,8 +10,8 @@
 
 /* Static design scales (fonts, radius, brand ramp, motion) */
 @theme {
-  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand: #dc2626;
   --color-brand-strong: #b91c1c;
@@ -166,12 +166,11 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Luxury display serif on headings by default; text-* utilities still override sizing */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
   }
 }
 

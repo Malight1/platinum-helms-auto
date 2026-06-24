@@ -73,8 +73,8 @@ export function Navigation() {
               className={cn(
                 "relative text-sm tracking-wide transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-brand after:transition-all after:duration-300",
                 isActive(item.id)
-                  ? "text-white after:w-full"
-                  : "text-white/60 hover:text-white after:w-0 hover:after:w-full",
+                  ? "font-semibold text-white after:w-full"
+                  : "font-medium text-white/65 hover:text-white after:w-0 hover:after:w-full",
               )}
             >
               {item.label}

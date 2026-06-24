@@ -15,6 +15,7 @@ export type CarRecord = {
   bodyType: string;
   year: number;
   condition: string;
+  listingType: string;
   price: number;
   transmission: string;
   fuelType: string;
@@ -49,6 +50,7 @@ export const normalizeCar = (car: any): CarRecord => {
     bodyType: car.bodyType || "Sedan",
     year: Number(car.year || new Date().getFullYear()),
     condition: car.condition || "Foreign Used",
+    listingType: car.listingType || "purchase",
     price: Number(car.price || 0),
     transmission: car.transmission || "Automatic",
     fuelType: car.fuelType || "Petrol",

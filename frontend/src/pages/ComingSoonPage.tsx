@@ -183,7 +183,7 @@ export function ComingSoonPage({ onNavigate }: ComingSoonPageProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-6xl md:text-8xl mb-6 tracking-tight"
+              className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl"
             >
               <span className="bg-gradient-to-r from-white via-gray-200 to-red-600 bg-clip-text text-transparent">
                 The Future
@@ -197,7 +197,7 @@ export function ComingSoonPage({ onNavigate }: ComingSoonPageProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="mb-12 max-w-3xl mx-auto text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl"
             >
               We're crafting an unprecedented automotive experience. Join the waitlist for exclusive early access and VIP benefits.
             </motion.p>
@@ -222,11 +222,11 @@ export function ComingSoonPage({ onNavigate }: ComingSoonPageProps) {
                     whileHover={{ scale: 1.05, y: -5 }}
                     className="relative"
                   >
-                    <div className="bg-gradient-to-b from-gray-900 to-black border border-red-600/30 rounded-2xl p-6 md:p-8 shadow-lg shadow-red-600/20">
-                      <div className="text-4xl md:text-6xl mb-2 bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
+                    <div className="bg-gradient-to-b from-gray-900 to-black border border-red-600/30 rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg shadow-red-600/20">
+                      <div className="text-3xl sm:text-4xl md:text-6xl mb-1 sm:mb-2 bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent font-bold">
                         {String(item.value).padStart(2, '0')}
                       </div>
-                      <div className="text-xs md:text-sm text-gray-500 uppercase tracking-wider">
+                      <div className="text-[10px] sm:text-xs md:text-sm text-gray-500 uppercase tracking-wider">
                         {item.label}
                       </div>
                     </div>

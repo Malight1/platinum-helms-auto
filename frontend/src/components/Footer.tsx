@@ -1,12 +1,19 @@
-import { Facebook, Instagram, Twitter, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, MapPin, Phone, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoImage from "../assets/logo.png";
 
+function TikTokIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.02a8.23 8.23 0 004.82 1.55V7.12a4.85 4.85 0 01-1.05-.43z" />
+    </svg>
+  );
+}
+
 const socials = [
-  { Icon: Facebook, label: "Facebook", href: "#" },
-  { Icon: Instagram, label: "Instagram", href: "#" },
-  { Icon: Twitter, label: "Twitter / X", href: "#" },
-  { Icon: Youtube, label: "YouTube", href: "#" },
+  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/platinumhelmsautos" },
+  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/platinumhelmsautos" },
+  { Icon: TikTokIcon, label: "TikTok", href: "https://www.tiktok.com/@platinumhelmsautos" },
 ];
 
 const columns = [
@@ -47,10 +54,13 @@ export function Footer() {
             </p>
             <div className="space-y-2 text-sm text-white/60">
               <p className="flex items-center gap-2">
-                <MapPin size={15} className="text-brand" /> Lagos, Nigeria
+                <MapPin size={15} className="text-brand" /> Km 74 Ikota Lekki Expressway
               </p>
-              <a href="tel:+2348123456789" className="flex items-center gap-2 transition-colors hover:text-white">
-                <Phone size={15} className="text-brand" /> +234 812 345 6789
+              <a href="tel:+2347043974796" className="flex items-center gap-2 transition-colors hover:text-white">
+                <Phone size={15} className="text-brand" /> +234 7043974796
+              </a>
+              <a href="tel:+2348065779519" className="flex items-center gap-2 transition-colors hover:text-white">
+                <Phone size={15} className="text-brand" /> +234 8065779519
               </a>
               <a href="mailto:info@platinumhelms.com" className="flex items-center gap-2 transition-colors hover:text-white">
                 <Mail size={15} className="text-brand" /> info@platinumhelms.com
